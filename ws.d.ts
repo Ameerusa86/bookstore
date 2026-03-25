@@ -1,4 +1,4 @@
 declare module "ws" {
-  const WebSocket: any;
+  const WebSocket;
   export default WebSocket;
 }
