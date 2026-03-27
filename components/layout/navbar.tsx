@@ -1,43 +1,56 @@
-"use client";
-
 import Link from "next/link";
-import { ShoppingCart, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { auth, signOut } from "@/auth";
 
-export function Navbar() {
+export async function Navbar() {
+  const session = await auth();
+
   return (
-    <header className="border-b bg-background">
+    <header className="border-b">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
-        {/* Logo */}
-        <Link
-          href="/"
-          className="flex items-center gap-2 font-semibold text-lg"
-        >
-          <BookOpen className="h-5 w-5" />
+        <Link href="/" className="text-xl font-bold">
           BookStore
         </Link>
 
-        {/* Navigation Links */}
-        <nav className="hidden md:flex items-center gap-6 text-sm">
-          <Link href="/books" className="hover:text-primary">
-            Books
-          </Link>
-          <Link href="/categories" className="hover:text-primary">
-            Categories
-          </Link>
-          <Link href="/about" className="hover:text-primary">
-            About
-          </Link>
-        </nav>
-
-        {/* Actions */}
-        <div className="flex items-center gap-3">
-          <Button variant="ghost" size="icon">
-            <ShoppingCart className="h-5 w-5" />
+        <nav className="flex items-center gap-2">
+          <Button asChild variant="ghost">
+            <Link href="/books">Books</Link>
           </Button>
 
-          <Button>Login</Button>
-        </div>
+          {session?.user?.role === "ADMIN" && (
+            <Button asChild variant="ghost">
+              <Link href="/admin">Admin</Link>
+            </Button>
+          )}
+
+          {session?.user ? (
+            <>
+              <Button asChild variant="outline">
+                <Link href="/account">Account</Link>
+              </Button>
+
+              <form
+                action={async () => {
+                  "use server";
+                  await signOut({ redirectTo: "/" });
+                }}
+              >
+                <Button type="submit" variant="destructive">
+                  Logout
+                </Button>
+              </form>
+            </>
+          ) : (
+            <>
+              <Button asChild variant="ghost">
+                <Link href="/login">Login</Link>
+              </Button>
+              <Button asChild>
+                <Link href="/register">Register</Link>
+              </Button>
+            </>
+          )}
+        </nav>
       </div>
     </header>
   );

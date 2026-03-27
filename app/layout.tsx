@@ -1,14 +1,12 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
-
-const inter = Inter({ subsets: ["latin"] });
+import { AuthSessionProvider } from "@/components/providers/session-provider";
 
 export const metadata: Metadata = {
   title: "BookStore",
-  description: "A modern fullstack bookstore app built with Next.js",
+  description: "A modern fullstack bookstore app",
 };
 
 export default function RootLayout({
@@ -18,12 +16,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <div className="flex min-h-screen flex-col">
+      <body>
+        <AuthSessionProvider>
           <Navbar />
-          <div className="flex-1">{children}</div>
+          <main>{children}</main>
           <Footer />
-        </div>
+        </AuthSessionProvider>
       </body>
     </html>
   );

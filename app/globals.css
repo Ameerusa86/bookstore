@@ -18,7 +18,7 @@ body {
   color: var(--foreground);
 }
 
-/* @custom-variant dark (&:is(.dark *));
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
@@ -143,4 +143,4 @@ body {
   html {
     @apply font-sans;
   }
-} */
+}
