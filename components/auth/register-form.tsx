@@ -6,6 +6,13 @@ import { registerUserAction } from "@/actions/auth/register-user-action";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 type RegisterState = {
   success: boolean;
@@ -15,14 +22,6 @@ type RegisterState = {
 const initialState: RegisterState = {
   success: false,
 };
-
-function SubmitButton() {
-  return (
-    <Button type="submit" className="w-full">
-      Create Account
-    </Button>
-  );
-}
 
 export function RegisterForm() {
   const router = useRouter();
@@ -38,53 +37,66 @@ export function RegisterForm() {
   }, [state.success, router]);
 
   return (
-    <form action={formAction} className="space-y-5">
-      <div className="space-y-2">
-        <Label htmlFor="name">Full Name</Label>
-        <Input
-          id="name"
-          name="name"
-          type="text"
-          placeholder="John Doe"
-          required
-        />
-      </div>
+    <Card className="w-full max-w-md rounded-3xl border-border/70 bg-card/90 shadow-lg shadow-primary/5">
+      <CardHeader className="space-y-1">
+        <CardTitle className="text-2xl font-semibold">Create account</CardTitle>
+        <CardDescription>
+          Set up your account to manage purchases and saved books.
+        </CardDescription>
+      </CardHeader>
 
-      <div className="space-y-2">
-        <Label htmlFor="email">Email Address</Label>
-        <Input
-          id="email"
-          name="email"
-          type="email"
-          placeholder="john@example.com"
-          required
-        />
-      </div>
+      <CardContent>
+        <form action={formAction} className="space-y-5">
+          <div className="space-y-2">
+            <Label htmlFor="name">Full Name</Label>
+            <Input
+              id="name"
+              name="name"
+              type="text"
+              placeholder="John Doe"
+              required
+            />
+          </div>
 
-      <div className="space-y-2">
-        <Label htmlFor="password">Password</Label>
-        <Input
-          id="password"
-          name="password"
-          type="password"
-          placeholder="••••••••"
-          required
-        />
-      </div>
+          <div className="space-y-2">
+            <Label htmlFor="email">Email Address</Label>
+            <Input
+              id="email"
+              name="email"
+              type="email"
+              placeholder="john@example.com"
+              required
+            />
+          </div>
 
-      {state.error && (
-        <p className="text-sm font-medium text-destructive">{state.error}</p>
-      )}
+          <div className="space-y-2">
+            <Label htmlFor="password">Password</Label>
+            <Input
+              id="password"
+              name="password"
+              type="password"
+              placeholder="********"
+              required
+            />
+          </div>
 
-      {state.success && (
-        <p className="text-sm font-medium text-green-600">
-          Account created successfully. Redirecting to login...
-        </p>
-      )}
+          {state.error && (
+            <p className="rounded-md border border-destructive/30 bg-destructive/10 px-3 py-2 text-sm font-medium text-destructive">
+              {state.error}
+            </p>
+          )}
 
-      <Button type="submit" className="w-full" disabled={pending}>
-        {pending ? "Creating account..." : "Create Account"}
-      </Button>
-    </form>
+          {state.success && (
+            <p className="rounded-md border border-primary/25 bg-primary/10 px-3 py-2 text-sm font-medium text-primary">
+              Account created successfully. Redirecting to login...
+            </p>
+          )}
+
+          <Button type="submit" className="w-full shadow-sm" disabled={pending}>
+            {pending ? "Creating account..." : "Create Account"}
+          </Button>
+        </form>
+      </CardContent>
+    </Card>
   );
 }

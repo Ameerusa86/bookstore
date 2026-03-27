@@ -30,10 +30,10 @@ export function BookGrid({
         {Array.from({ length: 8 }).map((_, index) => (
           <div
             key={index}
-            className="overflow-hidden rounded-2xl border bg-background"
+            className="overflow-hidden rounded-3xl border border-border/70 bg-card/80"
           >
-            <div className="aspect-[3/4] animate-pulse bg-muted" />
-            <div className="space-y-3 p-4">
+            <div className="aspect-3/4 animate-pulse bg-muted/60" />
+            <div className="space-y-3 p-5">
               <div className="h-4 w-20 animate-pulse rounded bg-muted" />
               <div className="h-5 w-3/4 animate-pulse rounded bg-muted" />
               <div className="h-4 w-1/2 animate-pulse rounded bg-muted" />
@@ -74,7 +74,7 @@ export function BookGrid({
   }
 
   return (
-    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4">
       {books.map((book) => (
         <BookCard key={book.id} book={book} />
       ))}

@@ -1,6 +1,8 @@
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 import { LoginForm } from "@/components/auth/login-form";
+import { Container } from "@/components/layout/container";
+import { Badge } from "@/components/ui/badge";
 
 export default async function LoginPage() {
   const session = await auth();
@@ -10,9 +12,25 @@ export default async function LoginPage() {
   }
 
   return (
-    <div className="container mx-auto max-w-md px-4 py-10">
-      <h1 className="mb-6 text-3xl font-bold">Login</h1>
-      <LoginForm />
-    </div>
+    <main className="animate-gentle-fade py-10 md:py-14">
+      <Container>
+        <div className="grid items-start gap-8 lg:grid-cols-2">
+          <section className="rounded-3xl border border-border/70 bg-card/70 p-8 shadow-sm md:p-10">
+            <Badge className="mb-4">Secure Access</Badge>
+            <h1 className="text-4xl font-semibold tracking-tight md:text-5xl">
+              Welcome back
+            </h1>
+            <p className="mt-4 max-w-md text-muted-foreground">
+              Continue your reading journey, manage orders, and access your
+              personalized library.
+            </p>
+          </section>
+
+          <div className="lg:justify-self-end">
+            <LoginForm />
+          </div>
+        </div>
+      </Container>
+    </main>
   );
 }

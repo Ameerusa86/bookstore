@@ -31,13 +31,13 @@ export function LoginForm() {
   const [state, formAction] = useActionState(loginAction, initialState);
 
   return (
-    <Card className="w-full max-w-md shadow-sm">
+    <Card className="w-full max-w-md rounded-3xl border-border/70 bg-card/90 shadow-lg shadow-primary/5">
       <CardHeader className="space-y-1">
         <CardTitle className="text-2xl font-semibold">Welcome back</CardTitle>
         <CardDescription>Sign in to your account to continue</CardDescription>
       </CardHeader>
 
-      <CardContent>
+      <CardContent className="space-y-1">
         <form action={formAction} className="space-y-5">
           <div className="space-y-2">
             <Label htmlFor="email">Email</Label>
@@ -78,7 +78,9 @@ export function LoginForm() {
             </div>
           ) : null}
 
-          <SubmitButton />
+          <div className="pt-1">
+            <SubmitButton />
+          </div>
 
           <p className="text-center text-sm text-muted-foreground">
             Don&apos;t have an account?{" "}

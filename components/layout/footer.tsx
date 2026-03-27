@@ -16,21 +16,27 @@ const categoryLinks = [
 
 export function Footer() {
   return (
-    <footer className="border-t bg-muted/40">
-      <div className="container mx-auto grid gap-10 px-4 py-12 md:grid-cols-2 lg:grid-cols-4">
-        <div className="space-y-4">
-          <Link href="/" className="text-2xl font-bold tracking-tight">
+    <footer className="relative mt-20 border-t border-border/70 bg-card/50 backdrop-blur-sm">
+      <div className="mx-auto grid w-full max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-4 lg:px-8">
+        <div className="space-y-4 lg:col-span-1">
+          <Link href="/" className="text-2xl font-semibold tracking-tight">
             BookStore
           </Link>
 
           <p className="max-w-xs text-sm text-muted-foreground">
-            Your modern online bookstore for discovering great books across
-            fiction, business, technology, and more.
+            A curated digital bookstore for serious readers, lifelong learners,
+            and professionals building better libraries.
+          </p>
+
+          <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
+            Read. Reflect. Rise.
           </p>
         </div>
 
         <div className="space-y-4">
-          <h3 className="text-sm font-semibold">Quick Links</h3>
+          <h3 className="text-sm font-semibold uppercase tracking-wider">
+            Explore
+          </h3>
 
           <ul className="space-y-2 text-sm text-muted-foreground">
             {shopLinks.map((link) => (
@@ -47,7 +53,9 @@ export function Footer() {
         </div>
 
         <div className="space-y-4">
-          <h3 className="text-sm font-semibold">Categories</h3>
+          <h3 className="text-sm font-semibold uppercase tracking-wider">
+            Categories
+          </h3>
 
           <ul className="space-y-2 text-sm text-muted-foreground">
             {categoryLinks.map((link) => (
@@ -64,23 +72,23 @@ export function Footer() {
         </div>
 
         <div className="space-y-4">
-          <h3 className="text-sm font-semibold">Newsletter</h3>
+          <h3 className="text-sm font-semibold uppercase tracking-wider">
+            Newsletter
+          </h3>
 
           <p className="text-sm text-muted-foreground">
-            Stay updated with new arrivals, featured books, and exclusive
-            offers.
+            Get monthly editorial picks, practical reading lists, and selected
+            releases.
           </p>
 
-          <p className="text-sm text-muted-foreground">
-            Email signup functionality will be added later in the course.
-          </p>
+          <p className="text-sm text-muted-foreground">hello@bookstore.dev</p>
         </div>
       </div>
 
-      <div className="border-t">
-        <div className="container mx-auto flex flex-col gap-3 px-4 py-6 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between">
+      <div className="border-t border-border/60">
+        <div className="mx-auto flex w-full max-w-7xl flex-col gap-3 px-4 py-6 text-sm text-muted-foreground sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
           <p>© 2026 BookStore. All rights reserved.</p>
-          <p>Built with Next.js, TypeScript, Tailwind CSS, and shadcn/ui.</p>
+          <p>Crafted with Next.js, TypeScript, Prisma, and Tailwind CSS.</p>
         </div>
       </div>
     </footer>
