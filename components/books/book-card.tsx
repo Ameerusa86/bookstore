@@ -58,7 +58,7 @@ export function BookCard({ book }: BookCardProps) {
         </p>
       </CardContent>
 
-      <CardFooter className="p-5 pt-0">
+      <CardFooter className="border-t-0 bg-transparent px-5 pb-5 pt-2">
         <Button asChild className="w-full shadow-sm">
           <Link href={`/books/${book.id}`}>View Details</Link>
         </Button>
